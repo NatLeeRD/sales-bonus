@@ -199,10 +199,10 @@ function analyzeSalesData(data, options) {
                     quantity
                 }))
         // Отсортируйте массив по убыванию количества товаров quantity.
-                .sort(
-                    (a, b) =>
-                        b.quantity - a.quantity
-                )
+                .sort((a, b) => {
+    if (b.quantity !== a.quantity) {
+        return b.quantity - a.quantity;
+    })
         // Отделите от массива первые 10 элементов, используя .slice().
                 .slice(0, 10);
     });
