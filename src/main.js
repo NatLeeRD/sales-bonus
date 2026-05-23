@@ -137,7 +137,8 @@ function analyzeSalesData(data, options) {
 
             // Посчитать выручку (revenue) с учётом скидки через функцию calculateRevenue
             const revenue =
-                calculateRevenue(item, product);
+                +calculateRevenue(item, product)
+                .toFixed(2);
 
             // Посчитать себестоимость (cost) товара как product.purchase_price, умноженную на количество товаров из чека
             const cost =
@@ -199,13 +200,10 @@ function analyzeSalesData(data, options) {
                     quantity
                 }))
         // Отсортируйте массив по убыванию количества товаров quantity.
-                .sort((a, b) => {
-    if (b.quantity !== a.quantity) {
-        return b.quantity - a.quantity;
-    }
-
-    return a.sku.localeCompare(b.sku);
-})
+                .sort(
+    (a, b) =>
+        b.quantity - a.quantity
+)
         // Отделите от массива первые 10 элементов, используя .slice().
                 .slice(0, 10);
     });
