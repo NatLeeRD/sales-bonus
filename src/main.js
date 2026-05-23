@@ -65,14 +65,16 @@ function analyzeSalesData(data, options) {
     // @TODO: Проверка входных данных
 
     if (
-        !data ||
-        !Array.isArray(data.sellers) ||
-        !Array.isArray(data.products) ||
-        !Array.isArray(data.purchase_records) ||
-        data.sellers.length === 0
-    ) {
-        throw new Error('Некорректные входные данные');
-    }
+    !data ||
+    !Array.isArray(data.sellers) ||
+    !Array.isArray(data.products) ||
+    !Array.isArray(data.purchase_records) ||
+    data.sellers.length === 0 ||
+    data.products.length === 0 ||
+    data.purchase_records.length === 0
+) {
+    throw new Error('Некорректные входные данные');
+}
         
     // @TODO: Проверка наличия опций
         if (!options) {
@@ -80,13 +82,6 @@ function analyzeSalesData(data, options) {
         }
         
         const { calculateRevenue, calculateBonus } = options;
-
-        if (
-            typeof calculateRevenue === 'function' ||
-            typeof calculateBonus === 'function'
-        ) {
-            console.log('is function');
-        }
 
         if (
             typeof calculateRevenue !== 'function' ||
