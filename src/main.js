@@ -202,7 +202,10 @@ function analyzeSalesData(data, options) {
                 .sort((a, b) => {
     if (b.quantity !== a.quantity) {
         return b.quantity - a.quantity;
-    })
+    }
+
+    return a.sku.localeCompare(b.sku);
+})
         // Отделите от массива первые 10 элементов, используя .slice().
                 .slice(0, 10);
     });
